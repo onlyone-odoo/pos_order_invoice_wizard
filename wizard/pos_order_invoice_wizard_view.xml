@@ -1,24 +1,26 @@
-<record id="view_pos_order_invoice_wizard_form" model="ir.ui.view">
-    <field name="name">pos.order.invoice.wizard.form</field>
-    <field name="model">pos.order.invoice.wizard</field>
-    <field name="arch" type="xml">
-        <form string="Facturar Pedido PoS con Diario Personalizado">
-            <group>
-                <field name="company_id" readonly="1"/>
-                <field name="journal_id"/>
-            </group>
-            <footer>
-                <button name="action_invoice_with_custom_journal" type="object" string="Facturar" class="oe_highlight"/>
-                <button special="cancel" string="Cancelar"/>
-            </footer>
-        </form>
-    </field>
-</record>
+<odoo>
+    <record id="view_pos_order_invoice_wizard_form" model="ir.ui.view">
+        <field name="name">pos.order.invoice.wizard.form</field>
+        <field name="model">pos.order.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Facturar Pedido PoS con Diario Personalizado">
+                <group>
+                    <field name="company_id" readonly="1"/>
+                    <field name="journal_id"/>
+                </group>
+                <footer>
+                    <button name="action_invoice_with_custom_journal" type="object" string="Facturar" class="oe_highlight"/>
+                    <button special="cancel" string="Cancelar"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
-<record id="action_pos_order_invoice_wizard" model="ir.actions.act_window">
-    <field name="name">Facturar Pedido PoS con Diario Personalizado</field>
-    <field name="res_model">pos.order.invoice.wizard</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-    <field name="view_id" ref="view_pos_order_invoice_wizard_form"/>
-</record>
+    <record id="action_pos_order_invoice_wizard" model="ir.actions.act_window">
+        <field name="name">Facturar Pedido PoS con Diario Personalizado</field>
+        <field name="res_model">pos.order.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_pos_order_invoice_wizard_form"/>
+    </record>
+</odoo>
