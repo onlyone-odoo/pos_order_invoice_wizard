@@ -9,7 +9,22 @@
                         type="action"
                         string="Facturar (Diario Personalizado)"
                         class="oe_highlight"
-                        invisible="state != 'paid'"/>
+                        invisible="state not in ['paid','done']"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_pos_order_tree_inherit_custom_invoice" model="ir.ui.view">
+        <field name="name">pos.order.tree.inherit.custom.invoice</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="before">
+                <header>
+                    <button name="%(action_pos_order_invoice_wizard)d"
+                            type="action"
+                            string="Facturar (Diario Personalizado)"
+                            class="oe_highlight"/>
+                </header>
             </xpath>
         </field>
     </record>
