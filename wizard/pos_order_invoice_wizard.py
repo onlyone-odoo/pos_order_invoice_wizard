@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 
@@ -25,7 +25,7 @@ class PosOrderInvoiceWizard(models.TransientModel):
             self.env.context.get("active_ids", [])
         )
         if not pos_orders:
-            raise UserError("No se seleccionaron pedidos.")
+            raise UserError(_("No se seleccionaron pedidos."))
 
         # Llamar al método personalizado para facturar con el diario seleccionado
         return pos_orders.action_pos_order_invoice_custom_journal(self.journal_id.id)
