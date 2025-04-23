@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <form string="Facturar Pedido PoS con Diario Personalizado">
                 <group>
-                    <field name="company_id" readonly="1"/>
+                    <field name="company_id" readonly="true"/>
                     <field name="journal_id"/>
                 </group>
                 <footer>
@@ -22,5 +22,23 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
         <field name="view_id" ref="view_pos_order_invoice_wizard_form"/>
+        <field name="domain">[('state', 'in', ['paid', 'done'])]</field>
+    </record>
+
+    <!-- Nueva Acción de Servidor -->
+    <record id="action_server_pos_order_invoice_wizard" model="ir.actions.server">
+        <field name="name">Facturar con Diario Personalizado (Tree)</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+        invalid_records = records.filtered(lambda r: r.state not in ['paid', 'done'])
+        if invalid_records:
+            raise UserError('Solo se pueden facturar pedidos en estado "Pagado" o "Hecho".')
+        action = env.ref('pos_order_invoice_wizard.action_pos_order_invoice_wizard').read()[0]
+        action['context'] = {'active_ids': record_ids, 'active_model': 'pos.order'}
+        return action
+        </field>
     </record>
 </odoo>
