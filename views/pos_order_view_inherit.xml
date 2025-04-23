@@ -9,7 +9,7 @@
                         type="action"
                         string="Facturar (Diario Personalizado)"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state', '!=', 'paid')]}"/>
+                        invisible="state != 'paid'"/>
             </xpath>
         </field>
     </record>
