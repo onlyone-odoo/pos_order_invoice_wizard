@@ -33,12 +33,12 @@
         <field name="binding_view_types">list</field>
         <field name="state">code</field>
         <field name="code">
-        invalid_records = records.filtered(lambda r: r.state not in ['paid', 'done'])
-        if invalid_records:
-            raise UserError('Solo se pueden facturar pedidos en estado "Pagado" o "Hecho".')
-        action = env.ref('pos_order_invoice_wizard.action_pos_order_invoice_wizard').read()[0]
-        action['context'] = {'active_ids': record_ids, 'active_model': 'pos.order'}
-        return action
+invalid_records = records.filtered(lambda r: r.state not in ['paid', 'done'])
+if invalid_records:
+    raise UserError('Solo se pueden facturar pedidos en estado "Pagado" o "Hecho".')
+action = env.ref('pos_order_invoice_wizard.action_pos_order_invoice_wizard').read()[0]
+action['context'] = {'active_ids': record_ids, 'active_model': 'pos.order'}
+return action
         </field>
     </record>
 </odoo>
