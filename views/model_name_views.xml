@@ -1,0 +1,14 @@
+<record id="view_pos_order_form_inherit_custom_invoice" model="ir.ui.view">
+    <field name="name">pos.order.form.inherit.custom.invoice</field>
+    <field name="model">pos.order</field>
+    <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//button[@name='action_pos_order_invoice']" position="after">
+            <button name="%(action_pos_order_invoice_wizard)d"
+                    type="action"
+                    string="Facturar (Diario Personalizado)"
+                    class="oe_highlight"
+                    attrs="{'invisible': [('state', '!=', 'paid')]}"/>
+        </xpath>
+    </field>
+</record>
