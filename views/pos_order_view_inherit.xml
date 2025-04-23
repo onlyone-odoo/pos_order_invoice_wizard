@@ -13,12 +13,13 @@
             </xpath>
         </field>
     </record>
+    <!-- Herencia de la vista tree -->
     <record id="view_pos_order_tree_inherit_custom_invoice" model="ir.ui.view">
         <field name="name">pos.order.tree.inherit.custom.invoice</field>
         <field name="model">pos.order</field>
         <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="before">
+            <xpath expr="//field[@name='arch']" position="inside">
                 <header>
                     <button name="%(action_pos_order_invoice_wizard)d"
                             type="action"
